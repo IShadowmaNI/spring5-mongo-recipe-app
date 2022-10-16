@@ -18,7 +18,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 class IngredientServiceImplTest {
@@ -83,7 +82,6 @@ class IngredientServiceImplTest {
 
         //when
         assertEquals("3", ingredientCommand.getId());
-        assertEquals("1", ingredientCommand.getRecipeId());
         verify(recipeRepository, times(1)).findById(anyString());
     }
 
@@ -119,7 +117,6 @@ class IngredientServiceImplTest {
         Ingredient ingredient = new Ingredient();
         ingredient.setId("3");
         recipe.addIngredient(ingredient);
-        ingredient.setRecipe(recipe);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
 
         when(recipeRepository.findById(anyString())).thenReturn(recipeOptional);
